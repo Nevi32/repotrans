@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reuse existing variables and base styles from main site */
         :root {
             --primary: #2563eb;
             --primary-light: #3b82f6;
@@ -21,17 +20,32 @@
             --light-gray: #e2e8f0;
             --white: #ffffff;
             --black: #0f172a;
+            --neon-glow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
             
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
             --shadow: 0 2px 4px rgba(0,0,0,0.08);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.12);
             --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
             
+            --radius-sm: 4px;
             --radius: 8px;
+            --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
+            --radius-full: 9999px;
             
             --transition: all 0.3s ease;
+            --transition-slow: all 0.6s ease;
+        }
+
+        [data-theme="dark"] {
+            --dark: #f8fafc;
+            --light: #1e293b;
+            --gray: #94a3b8;
+            --light-gray: #334155;
+            --white: #0f172a;
+            --black: #f8fafc;
         }
 
         * {
@@ -40,15 +54,128 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--dark);
             background-color: var(--light);
+            transition: var(--transition);
             overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Header - Consistent with main site */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 0.5rem auto 0;
+            border-radius: var(--radius-full);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Header & Navigation */
         header {
             position: fixed;
             top: 0;
@@ -61,14 +188,15 @@
             transition: var(--transition);
         }
 
+        [data-theme="dark"] header {
+            background-color: rgba(15, 23, 42, 0.95);
+        }
+
         .navbar {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 1.5rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem;
         }
 
         .logo {
@@ -109,6 +237,25 @@
             width: 100%;
         }
 
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--light-gray);
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -119,42 +266,200 @@
             z-index: 1001;
         }
 
-        /* Blog Hero Section */
-        .blog-hero {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(16, 185, 129, 0.1));
-            padding: 12rem 2rem 4rem;
-            text-align: center;
-            margin-top: 80px;
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                border-radius: var(--radius);
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a:hover {
+                background-color: var(--light-gray);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
         }
 
-        .blog-hero h1 {
+        /* Blog Hero */
+        .blog-hero {
+            padding: 10rem 0 5rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(16, 185, 129, 0.05));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            z-index: -1;
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.2); opacity: 0.1; }
+        }
+
+        .blog-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blog-hero-title {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .blog-hero p {
+        .blog-hero-subtitle {
             font-size: 1.25rem;
             color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 2rem;
+            margin-bottom: 2rem;
         }
 
-        /* Blog Grid Layout */
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+        /* Blog Search and Filters */
+        .blog-search-filters {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
         }
 
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--light);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--light-gray);
+            color: var(--gray);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-tag:hover, .filter-tag.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .filter-dropdowns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            background-color: var(--light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Blog Grid */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .blog-card {
@@ -164,6 +469,8 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             border: 1px solid var(--light-gray);
+            display: flex;
+            flex-direction: column;
         }
 
         .blog-card:hover {
@@ -171,67 +478,89 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .blog-image {
+        .blog-card-image {
             height: 200px;
             overflow: hidden;
         }
 
-        .blog-image img {
+        .blog-card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: var(--transition-slow);
         }
 
-        .blog-card:hover .blog-image img {
+        .blog-card:hover .blog-card-img {
             transform: scale(1.05);
         }
 
-        .blog-content {
+        .blog-card-content {
             padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .blog-category {
-            display: inline-block;
-            background-color: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--radius);
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .blog-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .blog-excerpt {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .blog-meta {
+        .blog-card-meta {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
             font-size: 0.875rem;
             color: var(--gray);
         }
 
-        .blog-author {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .blog-card-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        .author-avatar {
+        .blog-card-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-card-excerpt {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .blog-card-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .blog-card-author-img {
             width: 32px;
             height: 32px;
             border-radius: 50%;
             object-fit: cover;
+        }
+
+        .blog-card-author-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .blog-card-date {
+            font-size: 0.875rem;
+            color: var(--gray);
         }
 
         /* Featured Post */
@@ -240,11 +569,7 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
-            background-color: var(--white);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--light-gray);
+            margin-bottom: 3rem;
         }
 
         @media (min-width: 992px) {
@@ -253,110 +578,281 @@
             }
         }
 
-        .featured-image {
-            height: 400px;
+        .featured-post-image {
+            height: 100%;
+            min-height: 300px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
         }
 
-        .featured-image img {
+        .featured-post-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: var(--transition-slow);
         }
 
-        .featured-content {
-            padding: 2rem;
+        .featured-post:hover .featured-post-img {
+            transform: scale(1.03);
+        }
+
+        .featured-post-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .featured-category {
+        .featured-post-category {
+            display: inline-block;
+            padding: 0.25rem 1rem;
             background-color: var(--accent);
-            color: white;
-        }
-
-        .featured-title {
-            font-size: 2rem;
-        }
-
-        /* Newsletter CTA */
-        .newsletter-cta {
-            background-color: var(--primary);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            margin: 4rem 0;
-            border-radius: var(--radius-lg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter-cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            z-index: 0;
-            animation: pulse 15s infinite alternate;
-        }
-
-        .newsletter-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .newsletter-cta h2 {
-            font-size: 2rem;
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
 
+        .featured-post-title {
+            font-size: 2rem;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .featured-post-excerpt {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+            gap: 0.5rem;
+        }
+
+        .pagination-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+            background-color: var(--light-gray);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .pagination-link:hover, .pagination-link.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .pagination-link.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Sidebar Layout */
+        .blog-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            .blog-layout {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar-widget {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+        }
+
+        .widget-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--light-gray);
+            position: relative;
+        }
+
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        /* Popular Posts */
+        .popular-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .popular-post {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .popular-post:last-child {
+            border-bottom: none;
+        }
+
+        .popular-post-img {
+            width: 80px;
+            height: 60px;
+            border-radius: var(--radius);
+            object-fit: cover;
+        }
+
+        .popular-post-content {
+            flex: 1;
+        }
+
+        .popular-post-title {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .popular-post-date {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Categories */
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-link {
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .category-link:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .category-count {
+            background-color: var(--light-gray);
+            color: var(--gray);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+        }
+
+        /* Tags */
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--light-gray);
+            color: var(--gray);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* Newsletter */
         .newsletter-form {
             display: flex;
-            max-width: 500px;
-            margin: 2rem auto 0;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .newsletter-input {
-            flex: 1;
+            width: 100%;
             padding: 0.75rem 1rem;
-            border: none;
-            border-radius: var(--radius) 0 0 var(--radius);
-            font-family: inherit;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
 
         .newsletter-btn {
-            background-color: var(--accent);
-            color: white;
+            background-color: var(--primary);
+            color: var(--white);
             border: none;
-            padding: 0 1.5rem;
-            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            font-weight: 500;
             cursor: pointer;
             transition: var(--transition);
         }
 
         .newsletter-btn:hover {
-            background-color: #0da389;
+            background-color: var(--primary-dark);
         }
 
         /* Footer */
         footer {
             background-color: var(--white);
-            padding: 4rem 2rem 2rem;
+            padding: 5rem 0 2rem;
             border-top: 1px solid var(--light-gray);
         }
 
         .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
         }
 
         .footer-logo {
@@ -366,9 +862,19 @@
             margin-bottom: 1.5rem;
         }
 
+        .footer-logo-img {
+            height: 30px;
+        }
+
         .footer-text {
             color: var(--gray);
             margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
         }
 
         .footer-links {
@@ -384,6 +890,7 @@
 
         .footer-links a:hover {
             color: var(--primary);
+            padding-left: 5px;
         }
 
         .footer-bottom {
@@ -394,269 +901,549 @@
             font-size: 0.875rem;
         }
 
-        /* Mobile Responsiveness */
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: var(--white);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: var(--transition);
+            animation: pulse-glow 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Our Story Link */
+        .our-story-link {
+            position: fixed;
+            bottom: 9rem;
+            right: 2rem;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-lg);
+            z-index: 998;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .our-story-link:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            background-color: var(--primary);
+        }
+
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: var(--transition);
-                z-index: 1000;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
+            section {
+                padding: 3rem 0;
             }
             
             .blog-hero {
-                padding: 8rem 1.5rem 3rem;
-                margin-top: 70px;
+                padding: 7rem 0 3rem;
             }
             
-            .blog-hero h1 {
+            .blog-hero-title {
                 font-size: 2rem;
             }
             
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .newsletter-form {
+            .filter-dropdowns {
                 flex-direction: column;
             }
             
-            .newsletter-input {
-                border-radius: var(--radius);
-                margin-bottom: 0.5rem;
+            .whatsapp-float {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
             }
             
-            .newsletter-btn {
-                border-radius: var(--radius);
-                padding: 0.75rem;
+            .our-story-link {
+                bottom: 7rem;
+                right: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
             }
         }
 
-        /* Animations */
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.2); opacity: 0.1; }
-        }
+        /* Utility Classes */
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 1rem; }
+        .mt-4 { margin-top: 1.5rem; }
+        .mt-5 { margin-top: 3rem; }
+
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-5 { margin-bottom: 3rem; }
+
+        .text-primary { color: var(--primary); }
+        .text-accent { color: var(--accent); }
+        .text-gray { color: var(--gray); }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .gap-1 { gap: 0.25rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 1rem; }
+        .gap-4 { gap: 1.5rem; }
+        .gap-5 { gap: 3rem; }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <img src="logorepo.PNG" alt="RepoTrans Logo" class="logo-img">
-                <span>RepoTrans</span>
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#pricing">Pricing</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li>
-                    <a href="index.html" class="btn btn-primary">Back to Main</a>
-                </li>
-            </ul>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="logorepo.PNG" alt="RepoTrans Logo" class="logo-img">
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#pricing">Pricing</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="ourstory.html">Our Story</a></li>
+                    <li>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
     </header>
 
     <!-- Blog Hero -->
     <section class="blog-hero">
         <div class="container">
-            <h1>RepoTrans Insights</h1>
-            <p>Expert knowledge and latest trends in microfinance management for SACCOs, chamas, and financial institutions</p>
+            <div class="blog-hero-content">
+                <h1 class="blog-hero-title">RepoTrans Insights</h1>
+                <p class="blog-hero-subtitle">Expert articles, tips and updates on microfinance management, financial inclusion, and digital transformation for SACCOs and microfinance institutions.</p>
+            </div>
         </div>
     </section>
 
     <!-- Blog Content -->
-    <main class="blog-container">
-        <!-- Featured Post -->
-        <article class="blog-grid">
-            <div class="blog-card featured-post">
-                <div class="featured-image">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Digital Finance">
-                </div>
-                <div class="featured-content">
-                    <span class="blog-category featured-category">Featured</span>
-                    <h2 class="blog-title featured-title">How Digital Transformation is Revolutionizing Kenyan SACCOs</h2>
-                    <p class="blog-excerpt">Discover how Kenyan financial cooperatives are leveraging technology like RepoTrans to streamline operations, reduce defaults, and improve member services in our latest case study.</p>
-                    <div class="blog-meta">
-                        <div class="blog-author">
-                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Author" class="author-avatar">
-                            <span>Jane Muthoni</span>
+    <section class="section">
+        <div class="container">
+            <div class="blog-layout">
+                <!-- Main Content -->
+                <main class="blog-main">
+                    <!-- Search and Filters -->
+                    <div class="blog-search-filters">
+                        <div class="search-container">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search articles..." id="searchInput">
                         </div>
-                        <span>March 15, 2024</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Regular Posts -->
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Loan Management">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-category">How-To Guide</span>
-                    <h2 class="blog-title">5 Essential Features Every Loan Management System Should Have</h2>
-                    <p class="blog-excerpt">Learn about the must-have features that can transform your microfinance operations and how RepoTrans implements them seamlessly.</p>
-                    <div class="blog-meta">
-                        <div class="blog-author">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="author-avatar">
-                            <span>David Ochieng</span>
+                        
+                        <div class="filter-tags">
+                            <div class="filter-tag active">All</div>
+                            <div class="filter-tag">Microfinance</div>
+                            <div class="filter-tag">Technology</div>
+                            <div class="filter-tag">Loans</div>
+                            <div class="filter-tag">Savings</div>
+                            <div class="filter-tag">Management</div>
+                            <div class="filter-tag">Regulations</div>
                         </div>
-                        <span>March 10, 2024</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="M-Pesa Integration">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-category">Product Feature</span>
-                    <h2 class="blog-title">Automating M-Pesa Reconciliation: A Game Changer for Microfinance</h2>
-                    <p class="blog-excerpt">How our M-Pesa integration saves administrators 10+ hours weekly and reduces reconciliation errors to near zero.</p>
-                    <div class="blog-meta">
-                        <div class="blog-author">
-                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Author" class="author-avatar">
-                            <span>Sarah Kamau</span>
+                        
+                        <div class="filter-dropdowns">
+                            <div class="filter-group">
+                                <label for="categoryFilter" class="filter-label">Category</label>
+                                <select id="categoryFilter" class="filter-select">
+                                    <option value="all">All Categories</option>
+                                    <option value="technology">Technology</option>
+                                    <option value="management">Management</option>
+                                    <option value="regulations">Regulations</option>
+                                    <option value="case-studies">Case Studies</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="dateFilter" class="filter-label">Date</label>
+                                <select id="dateFilter" class="filter-select">
+                                    <option value="all">All Time</option>
+                                    <option value="week">Last Week</option>
+                                    <option value="month">Last Month</option>
+                                    <option value="year">Last Year</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="sortBy" class="filter-label">Sort By</label>
+                                <select id="sortBy" class="filter-select">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="popular">Most Popular</option>
+                                </select>
+                            </div>
                         </div>
-                        <span>March 5, 2024</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Financial Reports">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-category">Industry Insights</span>
-                    <h2 class="blog-title">2024 Microfinance Trends in East Africa: What You Need to Know</h2>
-                    <p class="blog-excerpt">Stay ahead of the curve with our analysis of emerging trends in digital microfinance and how to prepare your institution.</p>
-                    <div class="blog-meta">
-                        <div class="blog-author">
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Author" class="author-avatar">
-                            <span>James Mwangi</span>
+                    
+                    <!-- Featured Post -->
+                    <div class="featured-post">
+                        <div class="featured-post-image">
+                            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Featured Post" class="featured-post-img">
                         </div>
-                        <span>February 28, 2024</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Security">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-category">Security</span>
-                    <h2 class="blog-title">Protecting Client Data: Our Multi-Layered Security Approach</h2>
-                    <p class="blog-excerpt">An inside look at the military-grade security measures we've implemented to keep your financial data safe.</p>
-                    <div class="blog-meta">
-                        <div class="blog-author">
-                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Author" class="author-avatar">
-                            <span>Brian Simiyu</span>
+                        <div class="featured-post-content">
+                            <span class="featured-post-category">Technology</span>
+                            <h2 class="featured-post-title">How Digital Transformation is Revolutionizing Microfinance in Kenya</h2>
+                            <p class="featured-post-excerpt">Discover how Kenyan microfinance institutions are leveraging technology to improve efficiency, reduce costs, and better serve their members in an increasingly digital economy.</p>
+                            <a href="#" class="btn btn-primary">Read Article</a>
                         </div>
-                        <span>February 20, 2024</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="blog-card">
-                <div class="blog-image">
-                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Success Story">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-category">Success Story</span>
-                    <h2 class="blog-title">From Spreadsheets to System: How Riverside SACCO Boosted Efficiency</h2>
-                    <p class="blog-excerpt">A case study on how one SACCO reduced administrative workload by 60% after implementing RepoTrans.</p>
-                    <div class="blog-meta">
-                        <div class="blog-author">
-                            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Author" class="author-avatar">
-                            <span>Grace Atieno</span>
+                    
+                    <!-- Blog Grid -->
+                    <div class="blog-grid">
+                        <!-- Blog Card 1 -->
+                        <article class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Blog Post" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span class="blog-card-category">Management</span>
+                                    <span>•</span>
+                                    <span>5 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Best Practices for Loan Portfolio Management in SACCOs</h3>
+                                <p class="blog-card-excerpt">Learn the key strategies successful SACCOs use to maintain healthy loan portfolios and minimize defaults while maximizing member benefits.</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="blog-card-author-img">
+                                        <span class="blog-card-author-name">James Mwangi</span>
+                                    </div>
+                                    <span class="blog-card-date">May 15, 2023</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Blog Card 2 -->
+                        <article class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Blog Post" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span class="blog-card-category">Regulations</span>
+                                    <span>•</span>
+                                    <span>8 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Understanding the Latest CBK Regulations for Microfinance Institutions</h3>
+                                <p class="blog-card-excerpt">A comprehensive breakdown of the newest Central Bank of Kenya regulations and what they mean for your microfinance operations.</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="blog-card-author-img">
+                                        <span class="blog-card-author-name">Wanjiku Njoroge</span>
+                                    </div>
+                                    <span class="blog-card-date">Apr 28, 2023</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Blog Card 3 -->
+                        <article class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Blog Post" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span class="blog-card-category">Technology</span>
+                                    <span>•</span>
+                                    <span>6 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Integrating Mobile Money with Your Microfinance System</h3>
+                                <p class="blog-card-excerpt">Step-by-step guide to seamlessly integrating M-Pesa and other mobile money platforms with your microfinance management system.</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Author" class="blog-card-author-img">
+                                        <span class="blog-card-author-name">David Ochieng</span>
+                                    </div>
+                                    <span class="blog-card-date">Apr 10, 2023</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Blog Card 4 -->
+                        <article class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Blog Post" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span class="blog-card-category">Case Study</span>
+                                    <span>•</span>
+                                    <span>10 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">How Timau SACCO Increased Loan Recovery by 45% in 6 Months</h3>
+                                <p class="blog-card-excerpt">Case study exploring the strategies and tools that helped a rural SACCO dramatically improve its loan recovery rates.</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Author" class="blog-card-author-img">
+                                        <span class="blog-card-author-name">Grace Atieno</span>
+                                    </div>
+                                    <span class="blog-card-date">Mar 22, 2023</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Blog Card 5 -->
+                        <article class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Blog Post" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span class="blog-card-category">Savings</span>
+                                    <span>•</span>
+                                    <span>7 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Innovative Savings Products to Attract More Members</h3>
+                                <p class="blog-card-excerpt">Explore creative savings product designs that are helping microfinance institutions attract and retain more members in competitive markets.</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Author" class="blog-card-author-img">
+                                        <span class="blog-card-author-name">Peter Kamau</span>
+                                    </div>
+                                    <span class="blog-card-date">Mar 5, 2023</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Blog Card 6 -->
+                        <article class="blog-card">
+                            <div class="blog-card-image">
+                                <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Blog Post" class="blog-card-img">
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span class="blog-card-category">Management</span>
+                                    <span>•</span>
+                                    <span>9 min read</span>
+                                </div>
+                                <h3 class="blog-card-title">Effective Risk Management Strategies for Microfinance Institutions</h3>
+                                <p class="blog-card-excerpt">Learn how to identify, assess and mitigate the various risks facing microfinance institutions in today's challenging economic environment.</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Author" class="blog-card-author-img">
+                                        <span class="blog-card-author-name">Susan Wambui</span>
+                                    </div>
+                                    <span class="blog-card-date">Feb 18, 2023</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#" class="pagination-link disabled">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                        <a href="#" class="pagination-link active">1</a>
+                        <a href="#" class="pagination-link">2</a>
+                        <a href="#" class="pagination-link">3</a>
+                        <a href="#" class="pagination-link">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                </main>
+                
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- About Widget -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">About RepoTrans</h3>
+                        <p>RepoTrans provides cutting-edge microfinance management solutions to SACCOs, credit-only microfinance institutions, and chama groups across Kenya.</p>
+                        <p>Our blog shares insights, best practices and industry updates to help financial institutions thrive.</p>
+                    </div>
+                    
+                    <!-- Popular Posts -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Popular Posts</h3>
+                        <div class="popular-posts">
+                            <a href="#" class="popular-post">
+                                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Popular Post" class="popular-post-img">
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">Digital Transformation in Microfinance</h4>
+                                    <span class="popular-post-date">May 15, 2023</span>
+                                </div>
+                            </a>
+                            
+                            <a href="#" class="popular-post">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Popular Post" class="popular-post-img">
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">Loan Portfolio Management</h4>
+                                    <span class="popular-post-date">Apr 28, 2023</span>
+                                </div>
+                            </a>
+                            
+                            <a href="#" class="popular-post">
+                                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Popular Post" class="popular-post-img">
+                                <div class="popular-post-content">
+                                    <h4 class="popular-post-title">Case Study: Timau SACCO</h4>
+                                    <span class="popular-post-date">Mar 22, 2023</span>
+                                </div>
+                            </a>
                         </div>
-                        <span>February 15, 2024</span>
                     </div>
-                </div>
+                    
+                    <!-- Categories -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Categories</h3>
+                        <ul class="category-list">
+                            <li class="category-item">
+                                <a href="#" class="category-link">Technology</a>
+                                <span class="category-count">12</span>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link">Management</a>
+                                <span class="category-count">8</span>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link">Regulations</a>
+                                <span class="category-count">5</span>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link">Case Studies</a>
+                                <span class="category-count">7</span>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link">Savings</a>
+                                <span class="category-count">4</span>
+                            </li>
+                            <li class="category-item">
+                                <a href="#" class="category-link">Loans</a>
+                                <span class="category-count">9</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Tags</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag">#microfinance</a>
+                            <a href="#" class="tag">#saccos</a>
+                            <a href="#" class="tag">#loans</a>
+                            <a href="#" class="tag">#savings</a>
+                            <a href="#" class="tag">#mpesa</a>
+                            <a href="#" class="tag">#fintech</a>
+                            <a href="#" class="tag">#kenya</a>
+                            <a href="#" class="tag">#banking</a>
+                            <a href="#" class="tag">#digital</a>
+                            <a href="#" class="tag">#management</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="sidebar-widget">
+                        <h3 class="widget-title">Subscribe to Newsletter</h3>
+                        <p>Get the latest articles and updates delivered to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                            <button type="submit" class="newsletter-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </aside>
             </div>
-        </article>
-
-        <!-- Newsletter CTA -->
-        <section class="newsletter-cta">
-            <div class="newsletter-content">
-                <h2>Stay Updated with Microfinance Insights</h2>
-                <p>Subscribe to our monthly newsletter for the latest tips, trends, and RepoTrans updates</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="logorepo.PNG" alt="RepoTrans Logo" class="footer-logo-img">
-                    <span>RepoTrans</span>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logorepo.PNG" alt="RepoTrans Logo" class="footer-logo-img">
+                    </div>
+                    <p class="footer-text">Streamlining microfinance operations with innovative technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <p class="footer-text">Streamlining microfinance operations with innovative technology solutions.</p>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="ourstory.html">Our Story</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Loan Management</a></li>
+                        <li><a href="#">Payment Integration</a></li>
+                        <li><a href="#">Client Tracking</a></li>
+                        <li><a href="#">Reporting</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Staff Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+254700000000">+254 700 000 000</a></li>
+                        <li><a href="mailto:info@repotrans.com">info@repotrans.com</a></li>
+                        <li>Nairobi, Kenya</li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="footer-col">
-                <h3 class="footer-title">Quick Links</h3>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#features">Features</a>
-                    <a href="index.html#pricing">Pricing</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="index.html#contact">Contact</a>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 RepoTrans. All rights reserved.</p>
             </div>
-            
-            <div class="footer-col">
-                <h3 class="footer-title">Contact</h3>
-                <div class="footer-links">
-                    <a href="tel:+254700000000">+254 700 000 000</a>
-                    <a href="mailto:info@repotrans.com">info@repotrans.com</a>
-                    <span>Nairobi, Kenya</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 RepoTrans. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Float -->
+    <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/254700000000" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Our Story Link -->
+    <a href="ourstory.html" class="our-story-link">
+        <i class="fas fa-book-open"></i> Our Story
+    </a>
+
+    <!-- JavaScript -->
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -668,23 +1455,71 @@
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
+        // Theme Toggle
+        const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.setAttribute('data-theme', currentTheme);
+            themeToggle.innerHTML = currentTheme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                this.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                this.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Filter Tags
+        const filterTags = document.querySelectorAll('.filter-tag');
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                filterTags.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // Here you would filter the blog posts based on the selected tag
+                console.log(`Filtering by tag: ${this.textContent}`);
             });
         });
 
-        // Smooth scrolling for anchor links
+        // Filter Dropdowns
+        const categoryFilter = document.getElementById('categoryFilter');
+        const dateFilter = document.getElementById('dateFilter');
+        const sortBy = document.getElementById('sortBy');
+        
+        [categoryFilter, dateFilter, sortBy].forEach(select => {
+            select.addEventListener('change', function() {
+                // Here you would filter/sort the blog posts based on the selected options
+                console.log(`Category: ${categoryFilter.value}`);
+                console.log(`Date: ${dateFilter.value}`);
+                console.log(`Sort By: ${sortBy.value}`);
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                // Here you would search the blog posts
+                console.log(`Searching for: ${this.value}`);
+            }
+        });
+
+        // Smooth Scrolling for Anchor Links with Header Offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#' || targetId.startsWith('http')) return;
                 
+                e.preventDefault();
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     const headerHeight = document.querySelector('header').offsetHeight;
@@ -694,17 +1529,21 @@
                         top: targetPosition,
                         behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
                 }
             });
         });
 
-        // Newsletter form submission
-        const newsletterForm = document.querySelector('.newsletter-form');
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            alert(`Thank you for subscribing with ${emailInput.value}! We'll keep you updated.`);
-            emailInput.value = '';
+        // Prevent horizontal scrolling on mobile
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth <= 768) {
+                window.scrollTo(0, window.scrollY);
+            }
         });
     </script>
 </body>
