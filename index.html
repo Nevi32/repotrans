@@ -368,7 +368,47 @@
             z-index: 1001;
         }
 
-        /* Hero Section with Neon Dashboard */
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                border-radius: var(--radius);
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a:hover {
+                background-color: var(--light-gray);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Hero Section */
         .hero {
             padding: 10rem 0 5rem;
             position: relative;
@@ -394,17 +434,32 @@
 
         .hero-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 3rem;
             align-items: center;
         }
 
+        @media (min-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         .hero-text {
             max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        @media (min-width: 992px) {
+            .hero-text {
+                text-align: left;
+                margin: 0;
+            }
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.1;
             background: linear-gradient(90deg, var(--primary), var(--accent));
@@ -412,6 +467,12 @@
             background-clip: text;
             color: transparent;
             animation: fadeInUp 1s ease;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
         }
 
         .hero-subtitle {
@@ -428,6 +489,13 @@
             margin-bottom: 3rem;
             animation: fadeInUp 1s ease 0.4s forwards;
             opacity: 0;
+            justify-content: center;
+        }
+
+        @media (min-width: 992px) {
+            .hero-buttons {
+                justify-content: flex-start;
+            }
         }
 
         .hero-image {
@@ -506,6 +574,7 @@
             flex-wrap: wrap;
             animation: fadeInUp 1s ease 0.6s forwards;
             opacity: 0;
+            justify-content: center;
         }
 
         .client-logo-container {
@@ -821,9 +890,15 @@
         /* About Section */
         .about {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 3rem;
             align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .about {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .about-image {
@@ -866,6 +941,7 @@
         .team-members {
             display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .team-member {
@@ -947,17 +1023,25 @@
             box-shadow: var(--shadow-md);
         }
 
-        /* Contact Section */
+        /* Contact Section - Improved for Mobile */
         .contact-form {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin-top: 2rem;
             background-color: var(--white);
-            border-radius: var(--radius-xl);
-            padding: 3rem;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--light-gray);
+        }
+
+        @media (min-width: 992px) {
+            .contact-form {
+                grid-template-columns: 1fr 1fr;
+                padding: 3rem;
+                border-radius: var(--radius-xl);
+            }
         }
 
         .contact-info {
@@ -969,7 +1053,15 @@
         .contact-icons {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .contact-icons {
+                gap: 2rem;
+                margin-bottom: 0;
+            }
         }
 
         .contact-icon {
@@ -1004,6 +1096,13 @@
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 992px) {
+            .social-links {
+                justify-content: flex-start;
+            }
         }
 
         .social-link {
@@ -1043,6 +1142,10 @@
             font-size: 1rem;
             transition: var(--transition);
             background-color: var(--light);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-size: 16px; /* Prevent zooming on focus in iOS */
         }
 
         .form-control:focus {
@@ -1062,10 +1165,23 @@
             background-color: var(--primary);
             color: var(--white);
             border: none;
-            padding: 1rem 2rem;
+            padding: 1rem;
             border-radius: var(--radius);
             font-weight: 600;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 992px) {
+            .submit-btn {
+                padding: 1rem 2rem;
+                width: auto;
+            }
         }
 
         .submit-btn:hover {
@@ -1297,87 +1413,39 @@
             }
         }
 
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-text {
-                order: 1;
-                text-align: center;
-                margin: 0 auto;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-            
-            .clients-logos {
-                justify-content: center;
-            }
-            
-            .about {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-form {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                transition: var(--transition);
-                z-index: 1000;
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
+            section {
+                padding: 3rem 0;
             }
             
             .section-title {
                 font-size: 2rem;
             }
             
-            .dashboard-content {
-                grid-template-columns: 1fr;
+            .hero {
+                padding: 7rem 0 3rem;
             }
-        }
-
-        @media (max-width: 576px) {
+            
             .hero-title {
                 font-size: 2rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
+                gap: 1rem;
             }
             
-            .pricing-grid, .testimonials-grid, .onboarding-steps {
-                grid-template-columns: 1fr;
+            .clients {
+                padding: 2rem;
             }
             
-            .team-members {
-                flex-direction: column;
+            .cta {
+                padding: 2rem;
+            }
+            
+            .cta-title {
+                font-size: 1.8rem;
             }
             
             .whatsapp-float {
@@ -1390,9 +1458,15 @@
             
             .our-story-link {
                 bottom: 7rem;
-                right: 1.5rem;
+                right: 1rem;
                 padding: 0.5rem 1rem;
                 font-size: 0.875rem;
+            }
+            
+            .contact-prompt {
+                bottom: 1rem;
+                left: 1rem;
+                max-width: calc(100% - 2rem);
             }
         }
 
@@ -1472,14 +1546,6 @@
                 <div class="electron"></div>
             </div>
         </div>
-    </div>
-
-    <!-- Financial Background Elements -->
-    <div class="financial-icons">
-        <div class="financial-icon"><i class="fas fa-receipt"></i></div>
-        <div class="financial-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-        <div class="financial-icon"><i class="fas fa-chart-line"></i></div>
-        <div class="financial-icon"><i class="fas fa-coins"></i></div>
     </div>
 
     <!-- Header -->
@@ -2048,7 +2114,6 @@
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.querySelector('.nav-links');
-        const themeToggle = document.getElementById('themeToggle');
         
         mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
@@ -2058,6 +2123,7 @@
 
         // Theme Toggle
         const body = document.body;
+        const themeToggle = document.getElementById('themeToggle');
         
         // Check for saved theme preference
         const currentTheme = localStorage.getItem('theme');
@@ -2079,18 +2145,20 @@
             }
         });
 
-        // Smooth Scrolling for Anchor Links
+        // Smooth Scrolling for Anchor Links with Header Offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#' || targetId.startsWith('http')) return;
                 
+                e.preventDefault();
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                     
@@ -2212,20 +2280,27 @@ ${formData.message || 'No additional message'}
             }
         });
 
-        // Click effect
-        document.addEventListener('click', function(e) {
-            const clickEffect = document.createElement('div');
-            clickEffect.className = 'click-effect';
-            clickEffect.style.left = `${e.clientX - 10}px`;
-            clickEffect.style.top = `${e.clientY - 10}px`;
-            document.body.appendChild(clickEffect);
-            
-            setTimeout(() => {
-                clickEffect.remove();
-            }, 500);
-        });
+        // Header Scroll Effect
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
         
-        // Prevent horizontal scrolling
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScroll > lastScrollTop) {
+                // Scrolling down
+                if (currentScroll > 100) {
+                    header.classList.add('scrolled');
+                }
+            } else {
+                // Scrolling up
+                header.classList.add('scrolled');
+            }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // Prevent horizontal scrolling on mobile
         window.addEventListener('scroll', function() {
             if (window.innerWidth <= 768) {
                 window.scrollTo(0, window.scrollY);
