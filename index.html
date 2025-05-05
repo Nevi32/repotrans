@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-
-        /* Base Styles & Variables */
-:root {
+      :root {
   --primary: #2563eb;
   --primary-light: #3b82f6;
   --primary-dark: #1d4ed8;
@@ -2069,7 +2067,6 @@ footer {
 .will-change-transform {
   will-change: transform;
 }
-        
     </style>
 </head>
 <body>
@@ -2078,18 +2075,26 @@ footer {
         <div class="atom">
             <div class="nucleus"></div>
             <div class="orbit">
-                <div class="electron" style="top: 0; left: 50%; transform: translate(-50%, -50%);"></div>
+                <div class="electron"></div>
             </div>
             <div class="orbit">
-                <div class="electron" style="top: 50%; right: 0; transform: translate(50%, -50%);"></div>
+                <div class="electron"></div>
             </div>
             <div class="orbit">
-                <div class="electron" style="bottom: 0; left: 50%; transform: translate(-50%, 50%);"></div>
+                <div class="electron"></div>
             </div>
             <div class="orbit">
-                <div class="electron" style="top: 50%; left: 0; transform: translate(-50%, -50%);"></div>
+                <div class="electron"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Financial Background Elements -->
+    <div class="financial-icons">
+        <div class="financial-icon"><i class="fas fa-receipt"></i></div>
+        <div class="financial-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+        <div class="financial-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="financial-icon"><i class="fas fa-coins"></i></div>
     </div>
 
     <!-- Header -->
@@ -2098,7 +2103,6 @@ footer {
             <nav class="navbar">
                 <a href="#" class="logo">
                     <img src="logorepo.PNG" alt="RepoTrans Logo" class="logo-img">
-                    <span class="logo-text">REPOTRANS</span>
                 </a>
                 
                 <ul class="nav-links">
@@ -2108,11 +2112,8 @@ footer {
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="blog.html">Blog</a></li>
+                    <li><a href="ourstory.html">Our Story</a></li>
                 </ul>
-                
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
                 
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -2126,23 +2127,23 @@ footer {
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">Effortless Loan Management, Maximum Control</h1>
-                    <p class="hero-subtitle">Streamline your savings and lending process with automation & insights. Our system serves deposit taking and credit only microfinances, table banking and chama institutions, and Saccos.</p>
+                    <h1 class="hero-title animate-fade-in">Effortless Loan Management, Maximum Control</h1>
+                    <p class="hero-subtitle animate-fade-in animate-delay-1">Streamline your savings and lending process with automation & insights. Our system serves deposit taking and credit only microfinances, table banking and chama institutions, and Saccos.</p>
                     
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">Get Started</a>
-                        <a href="#features" class="btn btn-outline">Learn More</a>
+                    <div class="hero-buttons animate-fade-in animate-delay-2">
+                        <a href="#contact" class="btn btn-primary hover-shine">Get Started</a>
+                        <a href="#features" class="btn btn-outline hover-shine">Learn More</a>
                     </div>
                     
-                    <div class="clients-logos">
-                        <img src="l1.PNG" alt="Client Logo" class="client-logo">
-                        <img src="l2.PNG" alt="Client Logo" class="client-logo">
-                        <img src="l8.PNG" alt="Client Logo" class="client-logo">
+                    <div class="clients-logos animate-fade-in animate-delay-3">
+                        <img src="l1.PNG" alt="Client Logo" class="client-logo hover-grow">
+                        <img src="l2.PNG" alt="Client Logo" class="client-logo hover-grow">
+                        <img src="l8.PNG" alt="Client Logo" class="client-logo hover-grow">
                     </div>
                 </div>
                 
                 <div class="hero-image">
-                    <img src="Capture.PNG" alt="RepoTrans Dashboard" class="dashboard-img">
+                    <img src="Capture.PNG" alt="RepoTrans Dashboard" class="dashboard-img hover-grow">
                 </div>
             </div>
         </div>
@@ -2206,6 +2207,169 @@ footer {
         </div>
     </section>
 
+    <!-- Dashboard Preview Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Experience Modern Financial Management</h2>
+            <p class="section-subtitle">Our intuitive dashboard gives you complete control over your microfinance operations</p>
+            
+            <div class="dashboard-ui">
+                <div class="dashboard-header">
+                    <h3 class="dashboard-title">
+                        <i class="fas fa-chart-pie"></i> RepoTrans Dashboard
+                    </h3>
+                    <div class="dashboard-actions">
+                        <button class="btn btn-outline">Export</button>
+                        <button class="btn btn-primary">Refresh Data</button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div class="dashboard-sidebar">
+                        <nav class="sidebar-menu">
+                            <a href="#" class="sidebar-item active">
+                                <i class="fas fa-tachometer-alt"></i> Overview
+                            </a>
+                            <a href="#" class="sidebar-item">
+                                <i class="fas fa-users"></i> Clients
+                            </a>
+                            <a href="#" class="sidebar-item">
+                                <i class="fas fa-hand-holding-usd"></i> Loans
+                            </a>
+                            <a href="#" class="sidebar-item">
+                                <i class="fas fa-piggy-bank"></i> Savings
+                            </a>
+                            <a href="#" class="sidebar-item">
+                                <i class="fas fa-file-invoice-dollar"></i> Transactions
+                            </a>
+                            <a href="#" class="sidebar-item">
+                                <i class="fas fa-chart-bar"></i> Reports
+                            </a>
+                            <a href="#" class="sidebar-item">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </nav>
+                    </div>
+                    
+                    <div class="dashboard-main">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h4 class="card-title">Active Loans</h4>
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <div class="card-value">Ksh 4,892,450</div>
+                            <div class="card-change change-positive">
+                                <i class="fas fa-arrow-up"></i> 12.5% from last month
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h4 class="card-title">Total Savings</h4>
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div class="card-value">Ksh 7,321,890</div>
+                            <div class="card-change change-positive">
+                                <i class="fas fa-arrow-up"></i> 8.3% from last month
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h4 class="card-title">Active Clients</h4>
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="card-value">1,245</div>
+                            <div class="card-change change-positive">
+                                <i class="fas fa-arrow-up"></i> 5.2% from last month
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h4 class="card-title">Default Rate</h4>
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="card-value">3.8%</div>
+                            <div class="card-change change-negative">
+                                <i class="fas fa-arrow-down"></i> 1.2% from last month
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card dashboard-card-large">
+                            <div class="card-header">
+                                <h4 class="card-title">Loan Performance</h4>
+                                <div class="card-actions">
+                                    <select class="form-control">
+                                        <option>Last 30 Days</option>
+                                        <option>Last 90 Days</option>
+                                        <option>This Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <!-- Chart would be rendered here with JavaScript -->
+                                <div style="height: 100%; display: flex; align-items: center; justify-content: center; background-color: var(--light-gray); border-radius: var(--radius);">
+                                    <p>Loan Performance Chart</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-card dashboard-card-large">
+                            <div class="card-header">
+                                <h4 class="card-title">Recent Transactions</h4>
+                                <button class="btn btn-outline">View All</button>
+                            </div>
+                            <div class="data-table-container">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Client</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2023-06-15</td>
+                                            <td>John Mwangi</td>
+                                            <td>Loan Repayment</td>
+                                            <td>Ksh 12,500</td>
+                                            <td><span class="status-badge status-active">Completed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023-06-14</td>
+                                            <td>Sarah Wambui</td>
+                                            <td>Savings Deposit</td>
+                                            <td>Ksh 8,000</td>
+                                            <td><span class="status-badge status-active">Completed</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023-06-14</td>
+                                            <td>David Kimani</td>
+                                            <td>Loan Disbursement</td>
+                                            <td>Ksh 50,000</td>
+                                            <td><span class="status-badge status-pending">Processing</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2023-06-13</td>
+                                            <td>Grace Atieno</td>
+                                            <td>Withdrawal</td>
+                                            <td>Ksh 15,000</td>
+                                            <td><span class="status-badge status-active">Completed</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Clients Section -->
     <section class="section clients">
         <div class="container">
@@ -2213,488 +2377,565 @@ footer {
             <p class="section-subtitle">We partner with financial institutions across Kenya to streamline their operations</p>
             
             <div class="clients-logos">
-                <img src="l1.PNG" alt="Fricity Capital" class="client-logo">
-                <img src="l2.PNG" alt="Manipap Capital" class="client-logo">
-                <img src="l3.PNG" alt="Provida Africa" class="client-logo">
-                <img src="l5.PNG" alt="Biashara Focus" class="client-logo">
-                <img src="l6.PNG" alt="Biashara Changer" class="client-logo">
-                <img src="l8.PNG" alt="Timeline" class="client-logo">
-                <img src="l9.PNG" alt="Ecoloop" class="client-logo">
-                <img src="l0.PNG" alt="Bright Choice" class="client-logo">
-                <img src="yubu.PNG" alt="Suyubu" class="client-logo">
+                <img src="l1.PNG" alt="Fricity Capital" class="client-logo hover-grow">
+                <img src="l2.PNG" alt="Manipap Capital" class="client-logo hover-grow">
+                <img src="l3.PNG" alt="Provida Africa" class="client-logo hover-grow">
+                <img src="l5.PNG" alt="Biashara Focus" class="client-logo hover-grow">
+                <img src="l6.PNG" alt="Biashara Changer" class="client-logo hover-grow">
+                <img src="l8.PNG" alt="Timeline" class="client-logo hover-grow">
+                <img src="l9.PNG" alt="Ecoloop" class="client-logo hover-grow">
+                <img src="l0.PNG" alt="Bright Choice" class="client-logo hover-grow">
+                <img src="yubu.PNG" alt="Suyubu" class="client-logo hover-grow">
             </div>
         </div>
     </section>
 
-        <!-- Testimonials Grid -->
-    <div class="testimonials-grid">
-        <div class="testimonial-card">
-            <p class="testimonial-text">"RepoTrans has transformed our microfinance operations. The automation features have saved us countless hours and reduced errors significantly."</p>
-            <div class="testimonial-author">
-                <img src="l1.PNG" alt="Client" class="author-img">
-                <div class="author-info">
-                    <h4>Fricity Capital</h4>
-                    <p>Eldoret</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="testimonial-card">
-            <p class="testimonial-text">"The reporting features give us real-time insights into our financial health. We've improved our loan recovery rate by 30% since implementation."</p>
-            <div class="testimonial-author">
-                <img src="l2.PNG" alt="Client" class="author-img">
-                <div class="author-info">
-                    <h4>Manipap Capital</h4>
-                    <p>Nairobi</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="testimonial-card">
-            <p class="testimonial-text">"The M-Pesa integration alone was worth the investment. Our members love the convenience and our accounting team loves the automatic reconciliation."</p>
-            <div class="testimonial-author">
-                <img src="l3.PNG" alt="Client" class="author-img">
-                <div class="author-info">
-                    <h4>Provida Africa</h4>
-                    <p>Thika</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Pricing Section -->
-<section class="section pricing" id="pricing">
-    <div class="container">
-        <h2 class="section-title">Simple, Transparent Pricing</h2>
-        <p class="section-subtitle">Choose the plan that fits your institution's needs</p>
-        
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3 class="pricing-title">Startup</h3>
-                <div class="pricing-price">6000<span>Ksh/month</span></div>
-                <ul class="pricing-features">
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">10 users</span>
-                    </li>
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">0-500 clients</span>
-                    </li>
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">All features included</span>
-                    </li>
-                </ul>
-                <a href="#contact" class="btn btn-outline">Get Started</a>
-            </div>
+    <!-- Testimonials Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Hear from financial institutions that have transformed their operations with RepoTrans</p>
             
-            <div class="pricing-card">
-                <div class="popular-badge">Popular</div>
-                <h3 class="pricing-title">Business</h3>
-                <div class="pricing-price">6500<span>Ksh/month</span></div>
-                <ul class="pricing-features">
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">15 users</span>
-                    </li>
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">500-2000 clients</span>
-                    </li>
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">All features included</span>
-                    </li>
-                </ul>
-                <a href="#contact" class="btn btn-primary">Get Started</a>
-            </div>
-            
-            <div class="pricing-card">
-                <h3 class="pricing-title">Enterprise</h3>
-                <div class="pricing-price">7000<span>Ksh/month</span></div>
-                <ul class="pricing-features">
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">Unlimited users</span>
-                    </li>
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">Unlimited clients</span>
-                    </li>
-                    <li class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span class="pricing-feature-text">All features included</span>
-                    </li>
-                </ul>
-                <a href="#contact" class="btn btn-outline">Get Started</a>
-            </div>
-        </div>
-        
-        <div class="text-center mt-5">
-            <p>All plans include: Payment integration with M-Pesa and banks, multiple branch support, double entry accounting system, charts and financial reports, bulk SMS reminders, expense management, loan officer reports and schedules, loan agreement generation, daily backups, and 24/7 support.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Onboarding Section -->
-<section class="section">
-    <div class="container">
-        <h2 class="section-title">Simple Onboarding Process</h2>
-        <p class="section-subtitle">Get started with RepoTrans in just a few steps</p>
-        
-        <div class="onboarding-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3 class="step-title">Request Demo or Start Trial</h3>
-                    <p class="step-text">Contact us to schedule a personalized demo or start a free trial to experience our platform firsthand.</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3 class="step-title">Customization Assessment</h3>
-                    <p class="step-text">We analyze your unique operations to determine the customizations needed for your specific requirements.</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3 class="step-title">System Deployment</h3>
-                    <p class="step-text">Each client gets their own dedicated codebase and database for maximum security and performance.</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3 class="step-title">Staff Training</h3>
-                    <p class="step-text">We provide comprehensive training either on-site or through online sessions to ensure your team is fully equipped.</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <h3 class="step-title">Data Migration</h3>
-                    <p class="step-text">We seamlessly migrate your existing data to the new system once you're satisfied with the platform.</p>
-                </div>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">6</div>
-                <div class="step-content">
-                    <h3 class="step-title">Ongoing Support</h3>
-                    <p class="step-text">We provide continuous support and maintenance to ensure your operations run smoothly.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="section" id="about">
-    <div class="container">
-        <div class="about">
-            <div class="about-image">
-                <img src="logorepo.PNG" alt="About RepoTrans" class="about-img">
-            </div>
-            
-            <div class="about-content">
-                <h2 class="about-title">Our Story</h2>
-                <p class="about-text">RepoTrans was founded with a vision to revolutionize microfinance management in Kenya. We understand the unique challenges faced by SACCOs, microfinance institutions, and chama groups in managing their operations efficiently.</p>
-                <p class="about-text">Our team of financial and technology experts has developed a comprehensive solution that combines robust functionality with intuitive design, making financial management accessible to institutions of all sizes.</p>
-                
-                <div class="team">
-                    <h3 class="team-title">Meet The Leadership</h3>
-                    <div class="team-members">
-                        <div class="team-member">
-                            <img src="https://via.placeholder.com/150x150" alt="Director" class="team-img">
-                            <h4 class="team-name">John Mwangi</h4>
-                            <p class="team-position">Director</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card hover-grow">
+                    <p class="testimonial-text">"RepoTrans has transformed our microfinance operations. The automation features have saved us countless hours and reduced errors significantly."</p>
+                    <div class="testimonial-author">
+                        <img src="l1.PNG" alt="Client" class="author-img">
+                        <div class="author-info">
+                            <h4>Fricity Capital</h4>
+                            <p>Eldoret</p>
                         </div>
-                        
-                        <div class="team-member">
-                            <img src="https://via.placeholder.com/150x150" alt="Vice Director" class="team-img">
-                            <h4 class="team-name">Sarah Wambui</h4>
-                            <p class="team-position">Vice Director</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card hover-grow">
+                    <p class="testimonial-text">"The reporting features give us real-time insights into our financial health. We've improved our loan recovery rate by 30% since implementation."</p>
+                    <div class="testimonial-author">
+                        <img src="l2.PNG" alt="Client" class="author-img">
+                        <div class="author-info">
+                            <h4>Manipap Capital</h4>
+                            <p>Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card hover-grow">
+                    <p class="testimonial-text">"The M-Pesa integration alone was worth the investment. Our members love the convenience and our accounting team loves the automatic reconciliation."</p>
+                    <div class="testimonial-author">
+                        <img src="l3.PNG" alt="Client" class="author-img">
+                        <div class="author-info">
+                            <h4>Provida Africa</h4>
+                            <p>Thika</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- CTA Section -->
-<section class="section">
-    <div class="container">
-        <div class="cta">
-            <h2 class="cta-title">Ready to Transform Your Microfinance Operations?</h2>
-            <p class="cta-text">Join hundreds of financial institutions across Kenya who trust RepoTrans for their management needs.</p>
-            <a href="#contact" class="cta-btn">Get Started Today</a>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="section" id="contact">
-    <div class="container">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">Have questions or ready to get started? Contact our team today.</p>
-        
-        <div class="contact-form">
-            <form id="contactForm">
-                <div class="form-group">
-                    <label for="name" class="form-label">Full Name</label>
-                    <input type="text" id="name" class="form-control" required>
+    <!-- Pricing Section -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Choose the plan that fits your institution's needs</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card hover-grow">
+                    <h3 class="pricing-title">Startup</h3>
+                    <div class="pricing-price">6000<span>Ksh/month</span></div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">10 users</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">0-500 clients</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">All features included</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline hover-shine">Get Started</a>
                 </div>
                 
-                <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" id="email" class="form-control" required>
+                <div class="pricing-card hover-grow">
+                    <div class="popular-badge">Popular</div>
+                    <h3 class="pricing-title">Business</h3>
+                    <div class="pricing-price">6500<span>Ksh/month</span></div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">15 users</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">500-2000 clients</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">All features included</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary hover-shine">Get Started</a>
                 </div>
                 
-                <div class="form-group">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" id="phone" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="institution" class="form-label">Institution Name</label>
-                    <input type="text" id="institution" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message" class="form-label">Your Message</label>
-                    <textarea id="message" class="form-control" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <span class="btn-text">Send via WhatsApp</span>
-                    <span class="btn-icon"><i class="fab fa-whatsapp"></i></span>
-                </button>
-            </form>
-        </div>
-    </div>
-</section>
-
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="https://via.placeholder.com/40x40" alt="RepoTrans Logo" class="footer-logo-img">
-                    <span class="footer-logo-text">REPOTRANS</span>
-                </div>
-                <p class="footer-text">Streamlining microfinance operations with innovative technology solutions.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                <div class="pricing-card hover-grow">
+                    <h3 class="pricing-title">Enterprise</h3>
+                    <div class="pricing-price">7000<span>Ksh/month</span></div>
+                    <ul class="pricing-features">
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">Unlimited users</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">Unlimited clients</span>
+                        </li>
+                        <li class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span class="pricing-feature-text">All features included</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline hover-shine">Get Started</a>
                 </div>
             </div>
             
-            <div class="footer-col">
-                <h3 class="footer-title">Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3 class="footer-title">Features</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Loan Management</a></li>
-                    <li><a href="#">Payment Integration</a></li>
-                    <li><a href="#">Client Tracking</a></li>
-                    <li><a href="#">Reporting</a></li>
-                    <li><a href="#">Security</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h3 class="footer-title">Contact</h3>
-                <ul class="footer-links">
-                    <li><a href="tel:+254700000000">+254 700 000 000</a></li>
-                    <li><a href="mailto:info@repotrans.com">info@repotrans.com</a></li>
-                    <li>Nairobi, Kenya</li>
-                </ul>
+            <div class="text-center mt-5">
+                <p>All plans include: Payment integration with M-Pesa and banks, multiple branch support, double entry accounting system, charts and financial reports, bulk SMS reminders, expense management, loan officer reports and schedules, loan agreement generation, daily backups, and 24/7 support.</p>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2023 RepoTrans. All rights reserved.</p>
+    </section>
+
+    <!-- Onboarding Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Simple Onboarding Process</h2>
+            <p class="section-subtitle">Get started with RepoTrans in just a few steps</p>
+            
+            <div class="onboarding-steps">
+                <div class="step hover-grow">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Request Demo or Start Trial</h3>
+                        <p class="step-text">Contact us to schedule a personalized demo or start a free trial to experience our platform firsthand.</p>
+                    </div>
+                </div>
+                
+                <div class="step hover-grow">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Customization Assessment</h3>
+                        <p class="step-text">We analyze your unique operations to determine the customizations needed for your specific requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="step hover-grow">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">System Deployment</h3>
+                        <p class="step-text">Each client gets their own dedicated codebase and database for maximum security and performance.</p>
+                    </div>
+                </div>
+                
+                <div class="step hover-grow">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Staff Training</h3>
+                        <p class="step-text">We provide comprehensive training either on-site or through online sessions to ensure your team is fully equipped.</p>
+                    </div>
+                </div>
+                
+                <div class="step hover-grow">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Data Migration</h3>
+                        <p class="step-text">We seamlessly migrate your existing data to the new system once you're satisfied with the platform.</p>
+                    </div>
+                </div>
+                
+                <div class="step hover-grow">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Ongoing Support</h3>
+                        <p class="step-text">We provide continuous support and maintenance to ensure your operations run smoothly.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about">
+                <div class="about-image">
+                    <img src="logorepo.PNG" alt="About RepoTrans" class="about-img hover-grow">
+                </div>
+                
+                <div class="about-content">
+                    <h2 class="about-title">Our Story</h2>
+                    <p class="about-text">RepoTrans was founded with a vision to revolutionize microfinance management in Kenya. We understand the unique challenges faced by SACCOs, microfinance institutions, and chama groups in managing their operations efficiently.</p>
+                    <p class="about-text">Our team of financial and technology experts has developed a comprehensive solution that combines robust functionality with intuitive design, making financial management accessible to institutions of all sizes.</p>
+                    
+                    <div class="team">
+                        <h3 class="team-title">Meet The Leadership</h3>
+                        <div class="team-members">
+                            <div class="team-member">
+                                <img src="https://via.placeholder.com/150x150" alt="Director" class="team-img">
+                                <h4 class="team-name">John Mwangi</h4>
+                                <p class="team-position">Director</p>
+                            </div>
+                            
+                            <div class="team-member">
+                                <img src="https://via.placeholder.com/150x150" alt="Vice Director" class="team-img">
+                                <h4 class="team-name">Sarah Wambui</h4>
+                                <p class="team-position">Vice Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="cta">
+                <h2 class="cta-title">Ready to Transform Your Microfinance Operations?</h2>
+                <p class="cta-text">Join hundreds of financial institutions across Kenya who trust RepoTrans for their management needs.</p>
+                <a href="#contact" class="cta-btn hover-shine">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Have questions or ready to get started? Contact our team today.</p>
+            
+            <div class="contact-form">
+                <div class="contact-info">
+                    <div class="contact-icons">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="contact-icon-text">
+                                <h4>Phone</h4>
+                                <p>+254 700 000 000</p>
+                            </div>
+                        </div>
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-icon-text">
+                                <h4>Email</h4>
+                                <p>info@repotrans.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-icon-text">
+                                <h4>Location</h4>
+                                <p>Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" data-tooltip="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" data-tooltip="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" data-tooltip="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="institution" class="form-label">Institution Name</label>
+                        <input type="text" id="institution" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Send via WhatsApp</span>
+                        <span class="btn-icon"><i class="fab fa-whatsapp"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logorepo.PNG" alt="RepoTrans Logo" class="footer-logo-img">
+                    </div>
+                    <p class="footer-text">Streamlining microfinance operations with innovative technology solutions.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="ourstory.html">Our Story</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Loan Management</a></li>
+                        <li><a href="#">Payment Integration</a></li>
+                        <li><a href="#">Client Tracking</a></li>
+                        <li><a href="#">Reporting</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Staff Management</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-title">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+254700000000">+254 700 000 000</a></li>
+                        <li><a href="mailto:info@repotrans.com">info@repotrans.com</a></li>
+                        <li>Nairobi, Kenya</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 RepoTrans. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/254700000000" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Floating Theme Toggle -->
+    <button class="floating-theme-toggle" id="floatingThemeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Our Story Link -->
+    <a href="ourstory.html" class="our-story-link">
+        <i class="fas fa-book-open"></i> Our Story
+    </a>
+
+    <!-- Contact Prompt -->
+    <div class="contact-prompt" id="contactPrompt">
+        <div class="prompt-header">
+            <h4 class="prompt-title">Need Help?</h4>
+            <button class="close-prompt" id="closePrompt">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <p class="prompt-text">Our team is ready to answer any questions you have about our microfinance management system.</p>
+        <a href="#contact" class="prompt-btn hover-shine">Contact Us</a>
     </div>
-</footer>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/254700000000" class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<!-- Contact Prompt -->
-<div class="contact-prompt" id="contactPrompt">
-    <div class="prompt-header">
-        <h4 class="prompt-title">Need Help?</h4>
-        <button class="close-prompt" id="closePrompt">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    <p class="prompt-text">Our team is ready to answer any questions you have about our microfinance management system.</p>
-    <a href="#contact" class="prompt-btn">Contact Us</a>
-</div>
-
-<!-- JavaScript -->
-<script>
-    // Loading Animation
-    window.addEventListener('load', function() {
-        const loading = document.getElementById('loading');
-        setTimeout(() => {
-            loading.style.opacity = '0';
+    <!-- JavaScript -->
+    <script>
+        // Loading Animation
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
             setTimeout(() => {
-                loading.style.display = 'none';
-            }, 500);
-        }, 1500);
-    });
+                loading.style.opacity = '0';
+                setTimeout(() => {
+                    loading.style.display = 'none';
+                }, 500);
+            }, 1500);
+            
+            // Add financial animations to the page
+            addFinancialAnimations();
+        });
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    mobileMenuBtn.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        this.innerHTML = navLinks.classList.contains('active') ? 
-            '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        body.setAttribute('data-theme', currentTheme);
-        themeToggle.innerHTML = currentTheme === 'dark' ? 
-            '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    }
-    
-    themeToggle.addEventListener('click', function() {
-        if (body.getAttribute('data-theme') === 'dark') {
-            body.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-            this.innerHTML = '<i class="fas fa-moon"></i>';
-        } else {
-            body.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            this.innerHTML = '<i class="fas fa-sun"></i>';
+        // Add financial animations to the page
+        function addFinancialAnimations() {
+            const container = document.body;
+            
+            // Add receipt animation
+            const receipt = document.createElement('div');
+            receipt.className = 'financial-animation receipt-animation';
+            receipt.style.top = `${Math.random() * 80 + 10}%`;
+            receipt.style.left = `${Math.random() * 80 + 10}%`;
+            container.appendChild(receipt);
+            
+            // Add currency animation
+            const currency = document.createElement('div');
+            currency.className = 'financial-animation currency-animation';
+            currency.style.top = `${Math.random() * 80 + 10}%`;
+            currency.style.left = `${Math.random() * 80 + 10}%`;
+            container.appendChild(currency);
+            
+            // Add form animation
+            const form = document.createElement('div');
+            form.className = 'financial-animation form-animation';
+            form.style.top = `${Math.random() * 80 + 10}%`;
+            form.style.left = `${Math.random() * 80 + 10}%`;
+            container.appendChild(form);
         }
-    });
 
-    // Smooth Scrolling for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            this.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Theme Toggle
+        const floatingThemeToggle = document.getElementById('floatingThemeToggle');
+        const body = document.body;
+        
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.setAttribute('data-theme', currentTheme);
+            floatingThemeToggle.innerHTML = currentTheme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+        
+        floatingThemeToggle.addEventListener('click', function() {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                this.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                this.innerHTML = '<i class="fas fa-sun"></i>';
             }
         });
-    });
 
-    // Contact Prompt
-    const contactPrompt = document.getElementById('contactPrompt');
-    const closePrompt = document.getElementById('closePrompt');
-    
-    setTimeout(() => {
-        contactPrompt.classList.add('show');
-    }, 10000);
-    
-    closePrompt.addEventListener('click', function() {
-        contactPrompt.classList.remove('show');
-    });
-    
-    // Show prompt again after 24 hours
-    function setPromptCookie() {
-        const now = new Date();
-        const time = now.getTime();
-        const expireTime = time + 1000 * 86400; // 24 hours
-        now.setTime(expireTime);
-        document.cookie = `promptShown=true; expires=${now.toUTCString()}; path=/`;
-    }
-    
-    function checkPromptCookie() {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            if (cookie.includes('promptShown=true')) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    if (!checkPromptCookie()) {
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Contact Prompt
+        const contactPrompt = document.getElementById('contactPrompt');
+        const closePrompt = document.getElementById('closePrompt');
+        
         setTimeout(() => {
             contactPrompt.classList.add('show');
-            setPromptCookie();
         }, 10000);
-    }
-
-    // Form Submission
-     // Enhanced WhatsApp Form Submission
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const submitBtn = document.getElementById('submitBtn');
-        const originalBtnText = submitBtn.querySelector('.btn-text').textContent;
         
-        try {
-            // Show loading state
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            // Get form values
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                institution: document.getElementById('institution').value.trim(),
-                message: document.getElementById('message').value.trim()
-            };
-            
-            // Validate form
-            if (!formData.name || !formData.phone) {
-                throw new Error('Please fill in all required fields');
+        closePrompt.addEventListener('click', function() {
+            contactPrompt.classList.remove('show');
+        });
+        
+        // Show prompt again after 24 hours
+        function setPromptCookie() {
+            const now = new Date();
+            const time = now.getTime();
+            const expireTime = time + 1000 * 86400; // 24 hours
+            now.setTime(expireTime);
+            document.cookie = `promptShown=true; expires=${now.toUTCString()}; path=/`;
+        }
+        
+        function checkPromptCookie() {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                if (cookie.includes('promptShown=true')) {
+                    return true;
+                }
             }
+            return false;
+        }
+        
+        if (!checkPromptCookie()) {
+            setTimeout(() => {
+                contactPrompt.classList.add('show');
+                setPromptCookie();
+            }, 10000);
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.querySelector('.btn-text').textContent;
             
-            // Create beautiful WhatsApp message
-            const whatsappMessage = 
+            try {
+                // Show loading state
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                
+                // Get form values
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    institution: document.getElementById('institution').value.trim(),
+                    message: document.getElementById('message').value.trim()
+                };
+                
+                // Validate form
+                if (!formData.name || !formData.phone) {
+                    throw new Error('Please fill in all required fields');
+                }
+                
+                // Create beautiful WhatsApp message
+                const whatsappMessage = 
 `✨ *New Inquiry from RepoTrans Website* ✨
 
 📌 *Contact Details:*
@@ -2707,37 +2948,50 @@ footer {
 ${formData.message || 'No additional message'}
 
 🚀 *I'm interested in learning more about RepoTrans solutions!*`;
+                
+                // Encode for URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const whatsappNumber = "254700000000"; // Replace with your number
+                
+                // Small delay for better UX
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Show success state briefly
+                submitBtn.classList.remove('loading');
+                submitBtn.classList.add('success');
+                submitBtn.querySelector('.btn-text').textContent = "Message Ready!";
+                
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Open WhatsApp
+                window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+                
+                // Reset form
+                this.reset();
+                
+            } catch (error) {
+                alert(error.message);
+                console.error('Form submission error:', error);
+            } finally {
+                // Reset button state
+                submitBtn.classList.remove('loading', 'success');
+                submitBtn.disabled = false;
+                submitBtn.querySelector('.btn-text').textContent = originalBtnText;
+            }
+        });
+
+        // Click effect
+        document.addEventListener('click', function(e) {
+            const clickEffect = document.createElement('div');
+            clickEffect.className = 'click-effect';
+            clickEffect.style.left = `${e.clientX - 10}px`;
+            clickEffect.style.top = `${e.clientY - 10}px`;
+            document.body.appendChild(clickEffect);
             
-            // Encode for URL
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappNumber = "254700000000"; // Replace with your number
-            
-            // Small delay for better UX
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Show success state briefly
-            submitBtn.classList.remove('loading');
-            submitBtn.classList.add('success');
-            submitBtn.querySelector('.btn-text').textContent = "Message Ready!";
-            
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Open WhatsApp
-            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-            
-            // Reset form
-            this.reset();
-            
-        } catch (error) {
-            alert(error.message);
-            console.error('Form submission error:', error);
-        } finally {
-            // Reset button state
-            submitBtn.classList.remove('loading', 'success');
-            submitBtn.disabled = false;
-            submitBtn.querySelector('.btn-text').textContent = originalBtnText;
-        }
-    });
-</script>
+            setTimeout(() => {
+                clickEffect.remove();
+            }, 500);
+        });
+    </script>
 </body>
 </html>
