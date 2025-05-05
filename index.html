@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RepoTrans - Microfinance Management System</title>
+    <link rel="icon" href="logorepo.PNG" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -758,23 +759,62 @@
             resize: vertical;
         }
 
-        .submit-btn {
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
+       .submit-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: var(--primary);
+        color: var(--white);
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .submit-btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .submit-btn .btn-icon {
+        transition: var(--transition);
+    }
+    
+    .submit-btn:hover .btn-icon {
+        transform: scale(1.2);
+    }
+    
+    /* Loading state */
+    .submit-btn.loading .btn-text {
+        visibility: hidden;
+        opacity: 0;
+    }
+    
+    .submit-btn.loading .btn-icon {
+        position: absolute;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    /* Success state */
+    .submit-btn.success {
+        background-color: var(--success);
+    }
+    
+    .submit-btn.success .btn-text::after {
+        content: " ✓";
+    }
 
         /* Footer */
         footer {
@@ -1109,7 +1149,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <img src="https://via.placeholder.com/40x40" alt="RepoTrans Logo" class="logo-img">
+                    <img src="logorepo.PNG" alt="RepoTrans Logo" class="logo-img">
                     <span class="logo-text">REPOTRANS</span>
                 </a>
                 
@@ -1147,14 +1187,14 @@
                     </div>
                     
                     <div class="clients-logos">
-                        <img src="https://via.placeholder.com/100x40" alt="Client Logo" class="client-logo">
-                        <img src="https://via.placeholder.com/100x40" alt="Client Logo" class="client-logo">
-                        <img src="https://via.placeholder.com/100x40" alt="Client Logo" class="client-logo">
+                        <img src="l1.PNG" alt="Client Logo" class="client-logo">
+                        <img src="l2.PNG" alt="Client Logo" class="client-logo">
+                        <img src="l8.PNG" alt="Client Logo" class="client-logo">
                     </div>
                 </div>
                 
                 <div class="hero-image">
-                    <img src="https://via.placeholder.com/600x400" alt="RepoTrans Dashboard" class="dashboard-img">
+                    <img src="Capture.PNG" alt="RepoTrans Dashboard" class="dashboard-img">
                 </div>
             </div>
         </div>
@@ -1225,15 +1265,15 @@
             <p class="section-subtitle">We partner with financial institutions across Kenya to streamline their operations</p>
             
             <div class="clients-logos">
-                <img src="https://via.placeholder.com/150x60" alt="Fricity Capital" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Manipap Capital" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Provida Africa" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Biashara Focus" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Biashara Changer" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Timeline" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Ecoloop" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Bright Choice" class="client-logo">
-                <img src="https://via.placeholder.com/150x60" alt="Suyubu" class="client-logo">
+                <img src="l1.png" alt="Fricity Capital" class="client-logo">
+                <img src="l2.png" alt="Manipap Capital" class="client-logo">
+                <img src="l3.png" alt="Provida Africa" class="client-logo">
+                <img src="l5.png" alt="Biashara Focus" class="client-logo">
+                <img src="l6.png" alt="Biashara Changer" class="client-logo">
+                <img src="l8.png" alt="Timeline" class="client-logo">
+                <img src="l9.png" alt="Ecoloop" class="client-logo">
+                <img src="l0.png" alt="Bright Choice" class="client-logo">
+                <img src="yubu.png" alt="Suyubu" class="client-logo">
             </div>
         </div>
     </section>
@@ -1243,7 +1283,7 @@
         <div class="testimonial-card">
             <p class="testimonial-text">"RepoTrans has transformed our microfinance operations. The automation features have saved us countless hours and reduced errors significantly."</p>
             <div class="testimonial-author">
-                <img src="https://via.placeholder.com/50x50" alt="Client" class="author-img">
+                <img src="l1.png" alt="Client" class="author-img">
                 <div class="author-info">
                     <h4>Fricity Capital</h4>
                     <p>Eldoret</p>
@@ -1254,7 +1294,7 @@
         <div class="testimonial-card">
             <p class="testimonial-text">"The reporting features give us real-time insights into our financial health. We've improved our loan recovery rate by 30% since implementation."</p>
             <div class="testimonial-author">
-                <img src="https://via.placeholder.com/50x50" alt="Client" class="author-img">
+                <img src="l2.png" alt="Client" class="author-img">
                 <div class="author-info">
                     <h4>Manipap Capital</h4>
                     <p>Nairobi</p>
@@ -1265,7 +1305,7 @@
         <div class="testimonial-card">
             <p class="testimonial-text">"The M-Pesa integration alone was worth the investment. Our members love the convenience and our accounting team loves the automatic reconciliation."</p>
             <div class="testimonial-author">
-                <img src="https://via.placeholder.com/50x50" alt="Client" class="author-img">
+                <img src="l3.png" alt="Client" class="author-img">
                 <div class="author-info">
                     <h4>Provida Africa</h4>
                     <p>Thika</p>
@@ -1486,11 +1526,15 @@
                     <textarea id="message" class="form-control" required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Send via WhatsApp</span>
+                    <span class="btn-icon"><i class="fab fa-whatsapp"></i></span>
+                </button>
             </form>
         </div>
     </div>
 </section>
+
 
 <!-- Footer -->
 <footer>
@@ -1676,17 +1720,76 @@
     }
 
     // Form Submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+     // Enhanced WhatsApp Form Submission
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submitBtn');
+        const originalBtnText = submitBtn.querySelector('.btn-text').textContent;
+        
+        try {
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
             
-            // Here you would typically send the form data to your server
-            // For demonstration, we'll just show an alert
-            alert('Thank you for your message! Our team will contact you shortly.');
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                institution: document.getElementById('institution').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Validate form
+            if (!formData.name || !formData.phone) {
+                throw new Error('Please fill in all required fields');
+            }
+            
+            // Create beautiful WhatsApp message
+            const whatsappMessage = 
+`✨ *New Inquiry from RepoTrans Website* ✨
+
+📌 *Contact Details:*
+   👤 *Name:* ${formData.name}
+   🏢 *Institution:* ${formData.institution || 'Not provided'}
+   📧 *Email:* ${formData.email || 'Not provided'}
+   📞 *Phone:* ${formData.phone}
+
+📝 *Message:*
+${formData.message || 'No additional message'}
+
+🚀 *I'm interested in learning more about RepoTrans solutions!*`;
+            
+            // Encode for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappNumber = "254700000000"; // Replace with your number
+            
+            // Small delay for better UX
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Show success state briefly
+            submitBtn.classList.remove('loading');
+            submitBtn.classList.add('success');
+            submitBtn.querySelector('.btn-text').textContent = "Message Ready!";
+            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+            
+            // Reset form
             this.reset();
-        });
-    }
+            
+        } catch (error) {
+            alert(error.message);
+            console.error('Form submission error:', error);
+        } finally {
+            // Reset button state
+            submitBtn.classList.remove('loading', 'success');
+            submitBtn.disabled = false;
+            submitBtn.querySelector('.btn-text').textContent = originalBtnText;
+        }
+    });
 </script>
 </body>
 </html>
