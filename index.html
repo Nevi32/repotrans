@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPOTRANS - Effortless Loan Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-blue: #0066cc;
+            --dark-blue: #004c99;
+            --light-blue: #e6f2ff;
+            --accent-blue: #33adff;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --gray: #6c757d;
+            --dark-gray: #343a40;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --glow: 0 0 15px rgba(0, 102, 204, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            background-color: var(--white);
+            color: var(--dark-gray);
+        }
+        
+        /* Preloader Animation */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .atom {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .nucleus {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--accent-blue);
+        }
+        
+        .electron {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 102, 204, 0.3);
+            animation: spin 2s linear infinite;
+        }
+        
+        .electron:nth-child(2) {
+            transform: rotate(60deg);
+            animation-duration: 1.5s;
+        }
+        
+        .electron:nth-child(3) {
+            transform: rotate(120deg);
+            animation-duration: 3s;
+        }
+        
+        .electron::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Navbar */
+        .navbar {
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: var(--shadow);
+        }
+        
+        .navbar-scrolled {
+            padding: 0.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 1rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-gray);
+            margin: 2px 0;
+            transition: all 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-content {
+            flex: 1;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--dark-gray);
+        }
+        
+        .hero-title span {
+            color: var(--primary-blue);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            color: var(--gray);
+            max-width: 600px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: right;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: all 0.5s;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+        
+        .client-logos {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .client-logos p {
+            font-weight: 600;
+            color: var(--gray);
+            margin-right: 1rem;
+        }
+        
+        .client-logo {
+            height: 30px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        
+        .client-logo:hover {
+            opacity: 1;
+        }
+        
+        /* Features Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-gray);
+        }
+        
+        .feature-desc {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* Dashboard Preview */
+        .dashboard {
+            background-color: var(--light-gray);
+        }
+        
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .dashboard-preview {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        .dashboard-preview img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .preview-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-blue);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .preview-dot.active {
+            background-color: var(--primary-blue);
+            transform: scale(1.2);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .service-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .service-link i {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--light-gray);
+        }
+        
+        .testimonials-container {
+            position: relative;
+        }
+        
+        .testimonials-slider {
+            overflow: hidden;
+        }
+        
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial {
+            min-width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-client {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .client-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .client-info h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .client-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .testimonial-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .testimonial-btn:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background-color: var(--white);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border-color: var(--primary-blue);
+            z-index: 1;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .price-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .price-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .price-period {
+            color: var(--gray);
+        }
+        
+        .price-features {
+            margin-bottom: 30px;
+            list-style: none;
+        }
+        
+        .price-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-features li i {
+            color: var(--primary-blue);
+            margin-right: 10px;
+        }
+        
+        .price-button {
+            text-align: center;
+        }
+        
+        /* Process Section */
+        .process {
+            background-color: var(--light-gray);
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--light-blue);
+            z-index: 0;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 15px;
+            margin-bottom: 40px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 0 10px var(--white);
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* Why Choose Us Section */
+        .why-us {
+            background-color: var(--white);
+        }
+        
+        .why-us-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .why-us-image {
+            flex: 1;
+        }
+        
+        .why-us-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .why-us-content {
+            flex: 1;
+        }
+        
+        .why-us-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .why-us-features {
+            list-style: none;
+        }
+        
+        .why-us-feature {
+            margin-bottom: 25px;
+        }
+        
+        .feature-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .feature-header i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .feature-header h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .why-us-desc {
+            color: var(--gray);
+            padding-left: 55px;
+            line-height: 1.6;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+        
+        .btn-white:hover {
+            background-color: rgba(255, 255, 255,.9);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light-gray);
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .team-images {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .team-member {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .team-image {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .team-image img {
+            width: 100%;
+            transition: transform 0.5s;
+        }
+        
+        .team-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .team-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .team-role {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .about-desc {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 80px 0 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-blue);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.8rem;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.8);
+            z-index: 100;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 1);
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        /* Contact Form Popup */
+        .contact-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .contact-popup.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .contact-form {
+            width: 90%;
+            max-width: 500px;
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(30px);
+            transition: all 0.4s;
+        }
+        
+        .contact-popup.open .contact-form {
+            transform: translateY(0);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            color: var(--dark-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-btn:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin-bottom: 40px;
+            }
+            
+            .hero-subtitle, .client-logos {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            .about-container, .why-us-container {
+                flex-direction: column;
+            }
+            
+            .why-us-image {
+                order: 2;
+            }
+            
+            .why-us-content {
+                order: 1;
+                margin-bottom: 40px;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 0 20px;
+            }
+            
+            .hamburger {
+                display: flex;
+                z-index: 1001;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                transition: all 0.5s;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .process-step {
+                margin-bottom: 30px;
+                flex-basis: 50%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .process-step {
+                flex-basis: 100%;
+            }
+            
+            .team-images {
+                flex-direction: column;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="atom">
+            <div class="nucleus"></div>
+            <div class="electron"></div>
+            <div class="electron"></div>
+            <div class="electron"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container container">
+            <a href="#" class="logo">
+                <img src="/api/placeholder/40/40" alt="REPOTRANS Logo">
+                <span class="logo-text">REPOTRANS</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#contact" class="btn">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Effortless <span>Loan Management</span>, maximum control.</h1>
+                <p class="hero-subtitle">Streamline your savings and lending process with automation & insights. Our system serves MFIs, Table Banking, and SACCOs with powerful tools designed for growth.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn">Request Demo</a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+                <div class="client-logos">
+                    <p>Trusted by:</p>
+                    <img src="/api/placeholder/90/30" alt="Fricity Capital" class="client-logo">
+                    <img src="/api/placeholder/90/30" alt="Manipap Capital" class="client-logo">
+                    <img src="/api/placeholder/90/30" alt="Ecoloop" class="client-logo">
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/550/350" alt="REPOTRANS Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Our comprehensive platform offers all the tools you need to manage your financial institution efficiently.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="feature-title">Loan Management</h3>
+                    <p class="feature-desc">Track loans and savings from disbursement to repayments with automated schedules and notifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Payment Gateways</h3>
+                    <p class="feature-desc">Seamless integration with M-Pesa and banks for automated payment reconciliation and tracking.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Client Management</h3>
+                    <p class="feature-desc">Track clients effectively through metrics such as loan history, M-Pesa statements, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Data Security</h3>
+                    <p class="feature-desc">Military-grade security protocols to ensure your data is safe with daily backups and encryption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Business Reports</h3>
+                    <p class="feature-desc">Make decisions based on crystal clear reports and know the financial health of your institution.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="feature-title">Staff Management</h3>
+                    <p class="feature-desc">Assign roles and permissions to staff. Limit access levels for better security and management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview Section -->
+    <section class="section dashboard" id="dashboard">
+        <div class="container dashboard-container">
+            <div class="section-title">
+                <h2>Powerful Dashboard</h2>
+                <p>Get a complete overview of your business with our intuitive and data-rich dashboard</p>
+            </div>
+            <div class="dashboard-preview">
+                <img src="/api/placeholder/1000/600" alt="REPOTRANS Dashboard Preview">
+            </div>
+            <div class="preview-dots">
+                <div class="preview-dot active"></div>
+                <div class="preview-dot"></div>
+                <div class="preview-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Solutions</h2>
+                <p>Tailored for different financial institutions to meet your specific needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/api/placeholder/400/250" alt="Microfinance Solution">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Deposit Taking & Credit-Only Microfinances</h3>
+                        <p class="service-desc">Comprehensive solution for microfinance institutions with deposit and credit management capabilities.</p>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/api/placeholder/400/250" alt="Table Banking Solution">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Table Banking & Chama Institutions</h3>
+                        <p class="service-desc">Perfect for community-based saving groups with transparent contribution tracking.</p>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/api/placeholder/400/250" alt="SACCO Solution">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">SACCOs</h3>
+                        <p class="service-desc">Robust solution for Savings and Credit Cooperative Organizations with member management.</p>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container testimonials-container">
+            <div class="section-title">
+                <h2>Satisfied Clients</h2>
+                <p>What our clients say about our system and services</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"REPOTRANS has transformed the way we manage our loans and savings. The system is intuitive, powerful, and has helped us grow our business exponentially."</p>
+                            </div>
+                            <div class="testimonial-client">
+                                <div class="client-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Client">
+                                </div>
+                                <div class="client-info">
+                                    <h4>Fricity Capital</h4>
+                                    <p>Eldoret</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"The payment integration with M-Pesa has simplified our operations and reduced manual work by 70%. Our clients love the automated SMS reminders."</p>
+                            </div>
+                            <div class="testimonial-client">
+                                <div class="client-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Client">
+                                </div>
+                                <div class="client-info">
+                                    <h4>Manipap Capital</h4>
+                                    <p>Nairobi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p class="testimonial-text">"The reporting features have given us insights we never had before. We can now make data-driven decisions that have improved our portfolio performance."</p>
+                            </div>
+                            <div class="testimonial-client">
+                                <div class="client-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Client">
+                                </div>
+                                <div class="client-info">
+                                    <h4>Bright Choice</h4>
+                                    <p>Mombasa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <div class="testimonial-btn" id="prevTestimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="testimonial-btn" id="nextTestimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple Pricing</h2>
+                <p>Affordable plans designed to grow with your business</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="price-header">
+                        <h3 class="price-title">Startup</h3>
+                        <div class="price-amount">6,000 KSh</div>
+                        <p class="price-period">per month</p>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> 10 users</li>
+                        <li><i class="fas fa-check"></i> 0-500 clients</li>
+                        <li><i class="fas fa-check"></i> All features included</li>
+                    </ul>
+                    <div class="price-button">
+                        <a href="#contact" class="btn">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Popular</div>
+                    <div class="price-header">
+                        <h3 class="price-title">Business</h3>
+                        <div class="price-amount">6,500 KSh</div>
+                        <p class="price-period">per month</p>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> 15 users</li>
+                        <li><i class="fas fa-check"></i> 500-2000 clients</li>
+                        <li><i class="fas fa-check"></i> All features included</li>
+                    </ul>
+                    <div class="price-button">
+                        <a href="#contact" class="btn">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-header">
+                        <h3 class="price-title">Enterprise</h3>
+                        <div class="price-amount">7,000 KSh</div>
+                        <p class="price-period">per month</p>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> Unlimited users</li>
+                        <li><i class="fas fa-check"></i> Unlimited clients</li>
+                        <li><i class="fas fa-check"></i> All features included</li>
+                    </ul>
+                    <div class="price-button">
+                        <a href="#contact" class="btn">Get Started</a>
+                    </div>
+                </div>
+            </div>
+            <div class="section-title" style="margin-top: 60px;">
+                <h3>All plans include</h3>
+            </div>
+            <div class="features" style="margin-top: 30px;">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill"></i>
+                    </div>
+                    <h3 class="feature-title">Payment Integration</h3>
+                    <p class="feature-desc">M-Pesa and bank integration for seamless transactions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="feature-title">Multi-Branch Support</h3>
+                    <p class="feature-desc">Manage multiple branches under one system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="feature-title">Double Entry Accounting</h3>
+                    <p class="feature-desc">Professional accounting system built-in.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-title">Financial Reports</h3>
+                    <p class="feature-desc">Comprehensive charts and financial analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sms"></i>
+                    </div>
+                    <h3 class="feature-title">Bulk SMS</h3>
+                    <p class="feature-desc">Automated reminders to clients.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Android App</h3>
+                    <p class="feature-desc">Access your system on the go.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Onboarding Process</h2>
+                <p>Getting started with REPOTRANS is simple and straightforward</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Request Demo</h3>
+                    <p class="step-desc">Client requests a system demo or starts a trial to explore features.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Customization</h3>
+                    <p class="step-desc">We determine unique customizations based on your operations.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Deployment</h3>
+                    <p class="step-desc">We deploy the system with dedicated codebase and database.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Training</h3>
+                    <p class="step-desc">We train your staff physically or through online demos.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Data Migration</h3>
+                    <p class="step-desc">Once satisfied, we migrate your existing data if any.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Support</h3>
+                    <p class="step-desc">We continue with support and maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-us" id="why-us">
+        <div class="container why-us-container">
+            <div class="why-us-image">
+                <img src="/api/placeholder/500/400" alt="Why Choose REPOTRANS">
+            </div>
+            <div class="why-us-content">
+                <h2 class="why-us-title">Why Choose Us</h2>
+                <ul class="why-us-features">
+                    <li class="why-us-feature">
+                        <div class="feature-header">
+                            <i class="fas fa-money-check-alt"></i>
+                            <h4>Loan Management</h4>
+                        </div>
+                        <p class="why-us-desc">Track loans and savings from disbursement to repayments with complete transparency.</p>
+                    </li>
+                    <li class="why-us-feature">
+                        <div class="feature-header">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h4>Payment Gateways</h4>
+                        </div>
+                        <p class="why-us-desc">We integrate with banks and M-Pesa for automated payment reconciliation.</p>
+                    </li>
+                    <li class="why-us-feature">
+                        <div class="feature-header">
+                            <i class="fas fa-users-cog"></i>
+                            <h4>Clients Management</h4>
+                        </div>
+                        <p class="why-us-desc">Track clients effectively through metrics such as loan history, M-Pesa statements, etc.</p>
+                    </li>
+                    <li class="why-us-feature">
+                        <div class="feature-header">
+                            <i class="fas fa-lock"></i>
+                            <h4>Data Security</h4>
+                        </div>
+                        <p class="why-us-desc">We implement military-grade security protocols with daily data backups.</p>
+                    </li>
+                    <li class="why-us-feature">
+                        <div class="feature-header">
+                            <i class="fas fa-chart-bar"></i>
+                            <h4>Business Reports</h4>
+                        </div>
+                        <p class="why-us-desc">Make decisions based on crystal clear reports about your institution's financial health.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Financial Institution?</h2>
+            <p>Get started with REPOTRANS today and experience the power of automated financial management.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-white">Request Demo</a>
+                <a href="#pricing" class="btn">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container about-container">
+            <div class="team-images">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="/api/placeholder/300/350" alt="Director">
+                    </div>
+                    <h4 class="team-name">John Doe</h4>
+                    <p class="team-role">Director</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="/api/placeholder/300/350" alt="Vice Director">
+                    </div>
+                    <h4 class="team-name">Jane Smith</h4>
+                    <p class="team-role">Vice Director</p>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2 class="about-title">Our Story</h2>
+                <p class="about-desc">REPOTRANS was founded with a mission to revolutionize financial management for MFIs, SACCOs, and community banking institutions across Kenya. We identified a gap in the market for affordable, comprehensive, and user-friendly management systems tailored to the unique needs of African financial institutions.</p>
+                <p class="about-desc">Our team brings together expertise in financial technology, banking operations, and software development. We've worked with institutions of all sizes and understand the challenges they face in managing loans, savings, and client relationships.</p>
+                <p class="about-desc">Today, we're proud to serve leading financial institutions across Kenya, helping them streamline operations, make data-driven decisions, and provide better service to their clients.</p>
+                <a href="#contact" class="btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>REPOTRANS</h3>
+                <p style="color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 20px;">Streamline your savings and lending process with automation & insights.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktoktransition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            position: relative;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 12px 15px;
+            padding-right: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 30px;
+            color: var(--white);
+            outline: none;
+        }
+        
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .newsletter-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-decoration: none;
+                    <a href="https://wa.me/254712345678" class="social-icon whatsapp-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                    <li><a href="#pricing"><i class="fas fa-chevron-right"></i> Pricing</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Microfinance Solutions</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Table Banking</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> SACCO Solutions</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Payment Integration</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Data Migration</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Custom Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+                    <p><i class="fas fa-phone-alt"></i> +254 712 345 678</p>
+                    <p><i class="fas fa-envelope"></i> info@repotrans.com</p>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates and offers.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 REPOTRANS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Form Popup -->
+    <div class="contact-popup" id="contactPopup">
+        <div class="contact-form">
+            <div class="close-btn" id="closeContact">
+                <i class="fas fa-times"></i>
+            </div>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="institution">Institution Name</label>
+                    <input type="text" id="institution" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            }, 500);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Testimonial Slider
+        const track = document.getElementById('testimonialsTrack');
+        const prevBtn = document.getElementById('prevTestimonial');
+        const nextBtn = document.getElementById('nextTestimonial');
+        let currentSlide = 0;
+
+        function moveToSlide(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            currentSlide = index;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < 2) {
+                moveToSlide(currentSlide + 1);
+            } else {
+                moveToSlide(0);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                moveToSlide(currentSlide - 1);
+            } else {
+                moveToSlide(2);
+            }
+        });
+
+        // Auto slide testimonials
+        setInterval(() => {
+            if (currentSlide < 2) {
+                moveToSlide(currentSlide + 1);
+            } else {
+                moveToSlide(0);
+            }
+        }, 5000);
+
+        // Dashboard Preview Dots
+        const dots = document.querySelectorAll('.preview-dot');
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+                // Here you would change the dashboard preview image
+            });
+        });
+
+        // Contact Form Popup
+        const contactPopup = document.getElementById('contactPopup');
+        const closeContact = document.getElementById('closeContact');
+        const contactLinks = document.querySelectorAll('a[href="#contact"]');
+
+        contactLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactPopup.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeContact.addEventListener('click', () => {
+            contactPopup.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would handle form submission with AJAX
+            alert('Thank you for your message! We will contact you soon.');
+            contactForm.reset();
+            contactPopup.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#contact') {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Animation on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .service-card, .pricing-card, .process-step');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
